@@ -58,9 +58,9 @@ class HangpersonApp < Sinatra::Base
   get '/show' do
     status = @game.check_win_or_lose 
     if status == :win 
-      erb :win 
+      redirect '/win' 
     elsif status == :lose
-      erb :lose
+      redirect '/lose'
     else
       erb :show
     end
@@ -68,14 +68,22 @@ class HangpersonApp < Sinatra::Base
   
   # Display show - NO CHEATING!
   get '/win' do
-    erb :win
-    redirect '/show'
+    if @game.check_win_or_lose != :win
+      flash[:message] = "No cheating!"
+      redirect '/show'
+    else
+      erb :win
+    end
   end
   
   # Display show - NO CHEATING!
   get '/lose' do
-    erb :lose
-    redirect '/show'
+   if @game.check_win_or_lose != :lose
+      flash[:message] = "No cheating!"
+      redirect '/show'
+    else
+      erb :lose
+    end
   end
   
 end
