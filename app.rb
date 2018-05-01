@@ -64,14 +64,14 @@ class HangpersonApp < Sinatra::Base
     end
   end
   
+  # Display show - NO CHEATING!
   get '/win' do
-    ### YOUR CODE HERE ###
-    erb :show # You may change/remove this line
+    erb :show
   end
   
+  # Display show - NO CHEATING!
   get '/lose' do
-    ### YOUR CODE HERE ###
-    erb :show # You may change/remove this line
+    erb :show 
   end
   
 end
