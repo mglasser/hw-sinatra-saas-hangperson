@@ -19,10 +19,9 @@ class HangpersonGame
   # Player guesses a letter
   def guess(letter)
     # Error Handling
-    if letter == nil || letter.class != String || 
+    if letter == nil ||  
        letter == '' || 
-       letter =~ /[^A-Za-z]/ || 
-       letter.length != 1
+       letter =~ /[^A-Za-z]/
       raise ArgumentError, "Guess must be a letter"
     # Already guessed letter
     elsif @guesses.include?(letter.downcase) || @wrong_guesses.include?(letter.downcase)
