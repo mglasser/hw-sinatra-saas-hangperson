@@ -66,12 +66,14 @@ class HangpersonApp < Sinatra::Base
   
   # Display show - NO CHEATING!
   get '/win' do
-    erb :show
+    erb :win
+    redirect '/show'
   end
   
   # Display show - NO CHEATING!
   get '/lose' do
-    erb :show 
+    erb :lose
+    redirect '/show'
   end
   
 end
