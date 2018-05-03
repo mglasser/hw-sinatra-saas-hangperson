@@ -59,7 +59,7 @@ class HangpersonApp < Sinatra::Base
   # wrong_guesses and word_with_guesses from @game.
   get '/show' do
     status = @game.check_win_or_lose 
-    if status == :win 
+    if status == :win  
       redirect '/win' 
     elsif status == :lose
       redirect '/lose'

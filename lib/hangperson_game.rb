@@ -14,7 +14,7 @@ class HangpersonGame
     @wrong_guesses = ''
   end
 
-  attr_accessor :word, :guesses, :wrong_guesses
+  attr_accessor :word, :guesses, :wrong_guesses, :image_classes
 
   # Player guesses a letter
   def guess(letter)
@@ -63,11 +63,26 @@ class HangpersonGame
 
   # Sets up the hangman image
   def hangman_image_status
-    image_classes = ['hidden','hidden','hidden','hidden','hidden','hidden','hidden']
-    @wrong_guesses.split('').each_with_index do |letter, index|
-      image_classes[index] = 'show'
+    @image_classes = []
+    if check_win_or_lose == :win 
+      0.upto(8) do |index|
+        if index == 6 || index == 8
+          @image_classes[index] = 'hidden'
+        else
+          @image_classes[index] = 'show'
+        end
+      end
+
+    else
+      0.upto(8) do |index|
+        @image_classes[index] = 'hidden'
+      end
+      @image_classes[8] = 'show'
+      @wrong_guesses.split('').each_with_index do |letter, index|
+        @image_classes[index] = 'show'
+      end
     end
-    image_classes
+    @image_classes
   end
 
 
