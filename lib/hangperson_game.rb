@@ -19,15 +19,16 @@ class HangpersonGame
   # Player guesses a letter
   def guess(letter)
     # Error Handling
+    letter.downcase!
     if letter == nil ||  
        letter == '' || 
        letter =~ /[^A-Za-z]/
       raise ArgumentError, "Guess must be a letter"
     # Already guessed letter
-    elsif @guesses.include?(letter.downcase) || @wrong_guesses.include?(letter.downcase)
+    elsif @guesses.include?(letter) || @wrong_guesses.include?(letter)
       return false
     # Found a match -> add to @guesses
-    elsif word.include?(letter.downcase)
+    elsif word.include?(letter)
       @guesses += letter 
     # No match -> add to @wrong_guesses
     else
@@ -58,6 +59,15 @@ class HangpersonGame
     else
       return :play
     end
+  end
+
+  # Sets up the hangman image
+  def hangman_image_status
+    image_classes = ['hidden','hidden','hidden','hidden','hidden','hidden','hidden']
+    @wrong_guesses.split('').each_with_index do |letter, index|
+      image_classes[index] = 'show'
+    end
+    image_classes
   end
 
 

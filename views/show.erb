@@ -1,3 +1,5 @@
+<%= erb :hangperson_svg %>
+
 <h2>Guess a letter</h2>
 
 <% if flash[:message] %>
@@ -16,9 +18,17 @@
   <span class="word"><%= @game.word_with_guesses %></span>
 </p>
 
-<form action="/guess" method="post">
+<!-- <form action="/guess" method="post">
   <input type="text" size="1" name="guess" autocomplete="off"/>
   <input type="submit" value="Guess!"/>
+</form> -->
+
+<form action="/guess" method="post">
+	<% "A".upto("Z").each do |letter| %>
+		<% if !(@game.wrong_guesses + @game.guesses).include? letter.downcase %>
+  			<input type="submit" name="guess" value="<%= letter %>"/>
+  		<% end %>
+  	<% end %>
 </form>
 
 <%= erb :new %>

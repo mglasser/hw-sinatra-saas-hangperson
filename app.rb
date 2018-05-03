@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/flash'
 require './lib/hangperson_game.rb'
+require 'byebug'
 
 class HangpersonApp < Sinatra::Base
 
@@ -38,6 +39,7 @@ class HangpersonApp < Sinatra::Base
   # If a guess is repeated, set flash[:message] to "You have already used that letter."
   # If a guess is invalid, set flash[:message] to "Invalid guess."
   post '/guess' do
+    # byebug
     letter = params[:guess].to_s[0]
     if letter == nil || letter == '' || letter =~ /[^A-Za-z]/
        flash[:message] = "Invalid guess."
